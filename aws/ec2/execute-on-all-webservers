@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# make an array of IP addresses of servers on the private subnet subnet-xxxxx
+mapfile -t IP_LIST < <(aws ec2 describe-instances \
+        --filters "Name=instance-state-code,Values=16" "Name=network-interface.subnet-id,Values=subnet-xxxxx" \
+        --query 'Reservations[*].Instances[*].{Private:PrivateIpAddress}' \
+        --output text)
+
+# ssh to each ip and run the arguments following this program with sudo on the destination server
+for ip in "${IP_LIST[@]}"; do
+        echo $ip
+        ssh -i ~/.ssh/PRIVATEKEY.pem USERNAME@$ip sudo $@
+done
