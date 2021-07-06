@@ -1,7 +1,8 @@
 BASEURLS=('adityaputra.com' )
 PATHS=('.env' '.htaccess' 'wp-config.php' 'app/etc/config.xml' 'config.php' 'config.xml')
+#PATHS=('.env')
 
-# Declare a string array
+ORIGURL=()
 RESULT=()
 
 for url in "${BASEURLS[@]}"
@@ -12,6 +13,7 @@ do
     urlpath="https://$url/$path"
     status=$(curl -o /dev/null -s -w "%{http_code}\n" $urlpath)
     echo "$status $urlpath"
+    ORIGURL+=("$urlpath")
     if [ ${status} -eq "200" ]; then
       content=$(curl -s $urlpath)
       RESULT+=("$urlpath")
@@ -21,7 +23,12 @@ do
   done
 done
 
-# Iterate the loop to read and print each array element
+printf "\n\n================= SUMMARY OF CHECKED URLS ================= \n"
+for value in "${ORIGURL[@]}"
+do
+  echo $value
+done
+
 printf "\n\n================= SUMMARY OF ACCESSIBLE URLS ================= \n"
 for value in "${RESULT[@]}"
 do
