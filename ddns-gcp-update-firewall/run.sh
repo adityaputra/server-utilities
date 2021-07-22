@@ -1,1 +1,4 @@
-curl https://ipinfo.io/ip | gcloud compute firewall-rules update allow-nfs --source-ranges="$(</dev/stdin)"/32
+ip=$(curl https://ipinfo.io/ip)
+gcloud compute firewall-rules update allow-nfs --source-ranges="$ip"/32
+
+
