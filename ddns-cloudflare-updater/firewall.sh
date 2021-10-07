@@ -9,6 +9,6 @@ curl -X PUT \
      -d '{
     "id": "CF_FIREWALL_FILTER_ID",
     "paused": false,
-    "description": "allow-lab0-ip",
+    "description": "allow DDNS IP",
     "expression": "(ip.src eq '$ip')"
 }' "https://api.cloudflare.com/client/v4/zones/CF_FIREWALL_ZONE_ID/filters/CF_FIREWALL_FILTER_ID"
