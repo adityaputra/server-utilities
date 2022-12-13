@@ -1,7 +1,5 @@
 BASEURLS=('adityaputra.com' )
-PATHS=('.env' '.htaccess' 'wp-config.php' 'app/etc/config.xml' 'config.php' 'config.xml')
-#PATHS=('.env')
-
+PATHS=('.env' '.htaccess' '.git' '.git/config' '.gitignore' '.git/logs/HEAD' '.git/objects/info/packs' 'googleRefreshToken.txt' 'wp-config.php' 'app/etc/config.xml' 'config.php' 'config.xml')
 ORIGURL=()
 RESULT=()
 
